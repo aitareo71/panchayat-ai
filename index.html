@@ -40,11 +40,13 @@ ul{padding-left:18px;margin:.3rem 0}
 .msg.user{background:var(--ac);color:var(--btn);margin-left:auto}.msg.bot{background:var(--ac2)}
 .cin{display:flex;gap:6px;margin-top:8px}.cin input{flex:1;padding:8px;border:1px solid var(--bd);border-radius:8px;background:var(--card);color:var(--tx);font-size:.9rem}
 #ask:disabled{opacity:.6}
+.top{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap}
+#theme{background:var(--card);color:var(--tx);border:1px solid var(--bd);border-radius:99px;padding:6px 12px;font-size:.85rem;cursor:pointer}
 </style>
 </head>
 <body>
 <div class="wrap">
-<span class="tag">Seva First Innovation Challenge · Clean &amp; Sustainable Bharat</span>
+<div class="top"><span class="tag">Seva First Innovation Challenge · Clean &amp; Sustainable Bharat</span><button id="theme" aria-label="Switch between dark and light mode">🌙 Dark</button></div>
 <h1>Village &amp; Panchayat Innovation</h1>
 <h2 class="sub">Solutions for better public services and everyday life in villages and local communities.</h2>
 <div class="tabs" id="tabs"></div>
@@ -178,6 +180,11 @@ function upd(){document.getElementById("out").innerHTML=D[cur].calc(vals).map(fu
 var tb=document.getElementById("tabs");
 D.forEach(function(d,i){var b=document.createElement("button");b.textContent=d.tab;b.onclick=function(){show(i)};tb.appendChild(b)});
 show(0);
+(function(){var r=document.documentElement,b=document.getElementById("theme");
+var t=window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";
+try{var sv=localStorage.getItem("theme");if(sv)t=sv}catch(e){}
+function ap(){r.setAttribute("data-theme",t);b.textContent=t=="dark"?"☀️ Light":"🌙 Dark"}
+b.onclick=function(){t=t=="dark"?"light":"dark";try{localStorage.setItem("theme",t)}catch(e){}ap()};ap()})();
 </script>
 </body>
 </html>
