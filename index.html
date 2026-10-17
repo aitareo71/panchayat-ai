@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Village &amp; Panchayat Innovation</title>
+<style>
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+--bg:#f5f7f4;--card:#fff;--tx:#14231b;--mut:#5b6b62;--bd:#dbe3dd;--ac:#0b7a4b;--ac2:#e8f5ee;--btn:#fff}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0e1612;--card:#16211b;--tx:#e8f0ea;--mut:#9db0a4;--bd:#2a3a31;--ac:#4ade80;--ac2:#163324;--btn:#06210f}}
+:root[data-theme="dark"]{--bg:#0e1612;--card:#16211b;--tx:#e8f0ea;--mut:#9db0a4;--bd:#2a3a31;--ac:#4ade80;--ac2:#163324;--btn:#06210f}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--tx);font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;line-height:1.5}
+.wrap{max-width:980px;margin:0 auto;padding:16px}
+h1{font-size:1.5rem;margin:.2rem 0}h2{font-size:1.2rem;margin:0 0 .4rem}h3{font-size:1rem;margin:0 0 .3rem}
+.sub{color:var(--mut);margin:0 0 12px}h2.sub{font-size:1.05rem;font-weight:500;line-height:1.4}
+.tabs{display:flex;gap:6px;overflow-x:auto;padding-bottom:4px}
+.tabs button{flex:0 0 auto;background:var(--card);color:var(--tx);border:1px solid var(--bd);border-radius:8px;padding:8px 12px;font-size:.85rem;cursor:pointer}
+.tabs button.on{background:var(--ac);color:var(--btn);border-color:var(--ac)}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:14px;margin:12px 0}
+.grid{display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(210px,1fr))}
+.box{background:var(--ac2);border-radius:10px;padding:10px;font-size:.9rem}
+.box b{display:block;color:var(--ac);font-size:.8rem;text-transform:uppercase;letter-spacing:.03em}
+.tag{display:inline-block;font-size:.72rem;padding:2px 8px;border-radius:99px;background:var(--ac2);color:var(--ac);font-weight:600}
+label{display:block;font-size:.88rem;margin:8px 0 2px}input[type=range]{width:100%}
+.out{display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));margin-top:10px}
+.out div{border:1px solid var(--bd);border-radius:10px;padding:8px}
+.out b{display:block;font-size:1.3rem;color:var(--ac)}
+.note{font-size:.78rem;color:var(--mut)}
+ul{padding-left:18px;margin:.3rem 0}
+.crow{display:grid;grid-template-columns:minmax(110px,1.2fr) 2fr auto;gap:8px;align-items:center;margin:6px 0;font-size:.85rem}
+.bar{background:var(--ac2);border-radius:6px;height:20px}.bar i{display:block;height:100%;background:var(--ac);border-radius:6px}
+#ask{background:var(--ac);color:var(--btn);border:0;border-radius:8px;padding:9px 14px;font-size:.9rem;cursor:pointer}
+#askout{white-space:pre-wrap;font-size:.9rem}a{color:var(--ac)}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+.chip{background:var(--ac2);color:var(--ac);border:1px solid var(--bd);border-radius:99px;padding:5px 10px;font-size:.8rem;cursor:pointer}
+#chat{max-height:340px;overflow-y:auto}
+.msg{padding:8px 10px;border-radius:10px;margin:6px 0;white-space:pre-wrap;font-size:.9rem;max-width:92%}
+.msg.user{background:var(--ac);color:var(--btn);margin-left:auto}.msg.bot{background:var(--ac2)}
+.cin{display:flex;gap:6px;margin-top:8px}.cin input{flex:1;padding:8px;border:1px solid var(--bd);border-radius:8px;background:var(--card);color:var(--tx);font-size:.9rem}
+#ask:disabled{opacity:.6}
+</style>
+</head>
+<body>
+<div class="wrap">
+<span class="tag">Seva First Innovation Challenge · Clean &amp; Sustainable Bharat</span>
+<h1>Village &amp; Panchayat Innovation</h1>
+<h2 class="sub">Solutions for better public services and everyday life in villages and local communities.</h2>
+<div class="tabs" id="tabs"></div>
+<div id="panel"></div>
+<p class="note">Sliders are illustrative assumptions. News and data snapshots were collected on 17 October 2026 from the linked sources and do not update automatically; verify before presenting.</p>
+</div>
+<script>
+var f=function(n){return "₹"+Math.round(n).toLocaleString("en-IN")};
+var N=function(n){return Math.round(n).toLocaleString("en-IN")};
+var D=[
+{tab:"1. Panchayat water pumps",verdict:"Recommended pick",
+sum:"Rural piped water runs on electric pumps, and the power bill can strain a Gram Panchayat's budget. Pumps may run when they aren't needed, and faults often go unnoticed. A solar plus smart-monitoring solution would directly serve the Panchayat theme.",
+who:"Gram Panchayat treasury, pump operators, and households on piped water",
+surf:"High electricity bills and irregular water supply",
+root:"No data on when pumps run, how much they use, or why they fail",
+why:"More piped-water pumps means more recurring bills every year",
+idea:"Current sensor plus ESP32 on each pump and a tank-level switch. Rules flag dry run, overload, off-schedule running and overflow, and send SMS alerts to the operator. Data then shows which pumps suit solar.",
+met:"% energy saved, fault-detection time (days to hours), hours of water supply restored",
+inp:[["n","Number of pumps",1,20,1,4],["kw","Average pump power (kW)",0.5,15,0.1,3.7],["h","Running hours per day",1,24,1,6],["t","Tariff (₹/kWh)",3,12,0.5,7],["s","Expected saving (%)",5,40,1,20]],
+calc:function(v){var mb=v.n*v.kw*v.h*v.t*30;return [["Monthly power bill",f(mb)],["Saving per month",f(mb*v.s/100)],["Saving per year",f(mb*v.s/100*12)]]}},
+{tab:"2. Cold storage",verdict:"Runner-up",
+sum:"Bengal is a major potato state, and cold storages use a lot of power. Farmers and storage owners lose money on electricity, and a power cut can spoil the stock. This one sits between energy and farmers' income.",
+who:"Cold storage owners and the potato and vegetable farmers who store with them",
+surf:"High electricity cost and spoilage risk during power cuts",
+root:"Compressors run with little visibility into load, temperature drift or backup, so cuts and inefficiency go unmanaged",
+why:"Rising power costs squeeze already thin margins in the storage season",
+idea:"Temperature and power monitoring with outage alerts, load scheduling, and a solar or thermal-storage option to ride through cuts.",
+met:"kWh per tonne stored, spoilage %, outage hours covered",
+inp:[["tn","Storage capacity (tonnes)",500,10000,100,3000],["e","Energy use (kWh per tonne per month)",10,60,1,30],["t","Tariff (₹/kWh)",3,12,0.5,8],["s","Expected saving (%)",5,40,1,15]],
+calc:function(v){var mb=v.tn*v.e*v.t;return [["Monthly power bill",f(mb)],["Saving per month",f(mb*v.s/100)],["Energy used per month",N(v.tn*v.e)+" kWh"]]}},
+{tab:"3. Cyclone-resilient power",verdict:"Strong for disaster theme",
+sum:"After a cyclone, villages can go without power for days, which cuts off phones, water pumps and medical storage. A small local microgrid or backup system would also fit the disaster-resilience focus.",
+who:"Sundarbans and coastal villages, health sub-centres, cyclone shelters",
+surf:"Days of blackout after a cyclone",
+root:"Grid restoration is slow and no local backup exists for critical loads like water, phones and vaccine fridges",
+why:"Climate-driven storms are making outages more frequent and severe",
+idea:"Solar plus battery microgrid sized only for critical loads (shelter, health centre, water pump, phone charging), with a cyclone-ready islanding switch.",
+met:"Hours of critical services kept running, households reached, restoration time",
+inp:[["hh","Households served",50,2000,10,300],["k","Critical energy per household (kWh/day)",0.3,3,0.1,1],["d","Outage duration (days)",1,10,1,4]],
+calc:function(v){var d=v.hh*v.k;return [["Backup energy needed",N(d*v.d)+" kWh"],["Daily critical load",N(d)+" kWh"],["Solar to recharge daily (≈4 sun-hours)",(d/4).toFixed(1)+" kWp"]]}},
+{tab:"4. Transformers & voltage",verdict:"Realistic prototype",
+sum:"Burnt transformers leave villages dark for days and damage farm pumps. A low-cost sensor and alert system for early warnings is a realistic prototype.",
+who:"Rural households, farmers with irrigation pumps, and the local utility team",
+surf:"Long blackouts and damaged pumps",
+root:"Transformers fail from overload and oil or heat stress with no early warning, and the utility learns only when villagers call",
+why:"Growing rural load (pumps, appliances) is pushing old transformers past their limit",
+idea:"Low-cost sensors for load, temperature and voltage on each transformer, with SMS alerts to the lineman before failure.",
+met:"Household-days of outage avoided, failures prevented, repair response time",
+inp:[["tr","Transformers in area",10,500,5,100],["fr","Failure rate per year (%)",2,30,1,10],["hh","Households per transformer",20,300,5,80],["d","Days to restore",1,10,1,3],["c","Outage reduction from early warning (%)",10,80,5,50]],
+calc:function(v){var hd=v.tr*v.fr/100*v.hh*v.d;return [["Failures per year",(v.tr*v.fr/100).toFixed(1)],["Household-days lost per year",N(hd)],["Household-days saved",N(hd*v.c/100)]]}},
+{tab:"5. Clean cooking",verdict:"Crowded – needs a new angle",
+sum:"Smoke from biomass stoves harms women's health. This is a real problem, but many programmes already target it, so you'd need a clear new angle.",
+who:"Women and children in households that cook on wood, dung or crop residue",
+surf:"Smoke-related illness and hours spent collecting fuel",
+root:"Clean fuel and stoves exist, but cost, refill logistics and habit keep households on biomass",
+why:"Health and time burden persists despite existing schemes, so new delivery models matter",
+idea:"Only worth pursuing with a distinct angle, such as village-level biogas or induction-with-solar for community kitchens, plus tracking of real usage.",
+met:"% households fully switched, hours of fuel collection saved, indoor smoke reduction",
+inp:[["hh","Households using biomass",50,2000,10,300],["kg","Biomass burned (kg/day per household)",1,6,0.5,3],["w","Fuel collection (hours/week per household)",2,20,1,8]],
+calc:function(v){return [["Biomass burned per year",N(v.hh*v.kg*365/1000)+" tonnes"],["Collection time per year",N(v.hh*v.w*52)+" hours"],["Per household per year",N(v.w*52)+" hours"]]}}
+];
+var X=[
+{n:[['Nationally, about 15.79 crore of 19.36 crore rural households (81.59%) had tap water by early Feb 2026, per a Lok Sabha reply.','Lok Sabha','https://eparlib.sansad.in/bitstream/123456789/3020387/1/AU929_SHhBG5.pdf'],
+['West Bengal signed a Jal Jeevan Mission 2.0 agreement on 21 May 2026 for Gram Panchayat-led water management, with village committees handling upkeep and tariff collection.','Drishti IAS','https://www.drishtiias.com/state-pcs-current-affairs/centre-signs-mous-with-west-bengal-under-jal-jeevan-mission-20/print_manually'],
+['Birbhum’s Jajigram Gram Panchayat floated a ₹3.5 lakh tender in June 2026 for a solar pump with water tank, funded from Finance Commission grants.','Tender listing','https://tenders.infralens.in/tender/installation-of-solar-pump-with-water-tank-at-jajigram-2026-zphd-1026344-1'],
+['The state targets 5 lakh rooftop-solar households by March 2027, with a ₹35,000 subsidy for up to 1 kW.','Energetica India','https://www.energetica-india.net/news/west-bengal-sets-target-of-5-lakh-rooftop-solar-households-under-pm-surya-ghar-scheme-by-2027'],
+['Chart sources for West Bengal coverage: CAG audit (2019 figure) and a Rajya Sabha reply (July 2024 figure).','Rajya Sabha','https://rsdebate.nic.in/bitstream/123456789/750047/1/PQ_265_29072024_U712_p318_p319.pdf']],
+ct:'Chart: rural households with tap water (%)',
+c:[['WB, Mar 2019',1.31,'1.3%'],['WB, Jul 2024',50.97,'51%'],['India, Feb 2026',81.59,'81.6%']],
+a:'West Bengal went from about 1% to about 51% tap coverage in five years, which means many new pumps and recurring power bills that Panchayats now carry. Under JJM 2.0 the upkeep and tariff role moves to the village level, so energy cost and uptime become a Panchayat problem. I found no public data on pump-level energy use, which is the gap this project fills.'},
+{n:[['In April 2026 a bumper crop of roughly 14 million tonnes filled Bengal’s cold storages, potatoes rotted in the open, and farmers reported prices below the roughly ₹20,000 per bigha cost of growing.','PotatoPro','https://www.potatopro.com/zh-hans/news/2026/potato-surplus-west-bengal-triggers-price-crash-and-large-scale-wastage'],
+['Storage rent in Bengal was ₹168–172 per quintal at the Feb 2025 association meeting, unchanged for four years; an expert committee proposed about ₹190–194, still pending.','IndianPotato.com','https://indianpotato.com/cold-storage-rental-rates-in-india/']],
+ct:'Chart: cold storage rent (₹ per quintal)',
+c:[['Rent now (approx.)',170,'₹168–172'],['Proposed, south Bengal',190,'₹190'],['Proposed, north Bengal',194,'₹194']],
+a:'Rent has been frozen for four years and the proposal is only about 12% higher, so owners have little room to absorb power costs, which makes energy savings directly valuable. Full storages in April 2026 also show capacity is tight. I did not find a current figure for the electricity share of costs, so measure it at one storage.'},
+{n:[['Villagers in Binodpur report power staying off for about two to three weeks after every cyclone, and some families now buy portable solar units.','Global Hope Network, Mar 2026','https://globalhopenetwork.org/2026/03/17/light-em-up/'],
+['After Cyclone Amphan most of the Sundarbans lost power for up to a week, yet six solar microgrids kept about 600 families lit on Satjelia island; the region has about 200,000 off-grid solar connections.','Down To Earth','https://www.downtoearth.org.in/news/energy/solar-power-lights-up-sundarbans-island-71585'],
+['The state agency installed 17 solar microgrids in the Sundarbans between 1996 and 2006, and reporting found some defunct because of poor maintenance.','Scroll / Mongabay-India','https://scroll.in/article/1025917/in-the-indian-sundarbans-lack-of-maintenance-has-eclipsed-the-dream-of-solar-energy']],
+ct:'Chart: days without power after a cyclone',
+c:[['Amphan, most of Sundarbans (up to)',7,'up to 7'],['Binodpur, reported after cyclones',21,'14–21']],
+a:'Outages last days to weeks, and the places that coped had local solar systems. But older microgrids failed from poor upkeep, so the real gap looks like monitoring and maintenance, not only hardware. A monitored critical-load microgrid is a stronger pitch than panels alone.'},
+{n:[['I could not find public statistics on rural transformer failure rates in West Bengal, so treat the failure-rate slider as a guess to replace.','Note',''],
+['A tender listing shows a large West Bengal rate contract (listed near ₹275 crore) for repairing damaged distribution transformers, closing July 2026, which suggests repairs are a sizeable recurring cost.','Tender aggregator','https://tenders.infralens.in/browse/power/west-bengal']],
+ct:'Chart: not enough public data yet',
+c:[],
+a:'The honest finding is a data gap: there are no public failure counts, so your pilot data would be the novelty. Ask the local WBSEDCL office for transformer failure and restoration records (an RTI request can also work) and put those numbers into the sliders.'},
+{n:[['CEEW’s 2018 survey found 55% of rural West Bengal households used LPG as primary fuel, up from 15% in 2015, but only 40% used it exclusively; affordability was the main worry.','CEEW','https://ceew.in/press-releases/ujjwala-yojana-makes-ground-impact-west-bengal-affordability-remains-key-concern-ceew'],
+['A later national survey (NSS 78th round, 2020–21) is reported to show about 76% of rural West Bengal households depending on biomass, so figures differ by survey and definition.','Down To Earth','https://www.downtoearth.org.in/amp/story/energy/forest-to-flame-why-rural-india-still-cooks-on-firewood-despite-lpg-access'],
+['Nationally, households keep using chulhas alongside LPG because of habit, free biomass and limited refills.','CEEW, 2021','https://ceew.in/sites/default/files/CEEW-more-than-70-per-cent-of-indian-households-use-lpg-as-primary-cooking-fuel-3sep21.pdf']],
+ct:'Chart: rural West Bengal cooking fuel (%), different surveys',
+c:[['LPG primary, 2015',15,'15%'],['LPG primary, 2018',55,'55%'],['LPG exclusive, 2018',40,'40%'],['Biomass-dependent, 2020–21',76,'76%']],
+a:'Connections grew fast, but many households keep cooking with biomass alongside LPG because of cost, free fuel and refill access. A new angle should target actual usage, for example affordable refills or tracking real use. The surveys differ, so say which one you cite.'}];
+function extra(i){var x=X[i],s='<div class="card"><h3>Current news &amp; data <span class="tag">snapshot 17 Oct 2026</span></h3><ul>';
+x.n.forEach(function(n){s+='<li>'+n[0]+(n[2]?' <a href="'+n[2]+'" target="_blank" rel="noopener">'+n[1]+'</a>':'')+'</li>'});
+s+='</ul></div><div class="card"><h3>'+x.ct+'</h3>';
+if(x.c.length){var m=Math.max.apply(null,x.c.map(function(c){return c[1]}));
+x.c.forEach(function(c){s+='<div class="crow"><span>'+c[0]+'</span><div class="bar"><i style="width:'+Math.round(c[1]/m*100)+'%"></i></div><b>'+c[2]+'</b></div>'})}
+s+='<p><b>My reading:</b> '+x.a+'</p><p class="note">This is my interpretation of the linked sources, not an official finding.</p></div>';
+s+='<div class="card"><h3>PanchayatAI chatbot</h3><p class="note">Ask about this problem, your slider numbers, the sources or your pitch.</p><div class="chips"><button class="chip">Explain this problem simply</button><button class="chip">Is my estimate realistic?</button><button class="chip">Help me write the pitch opening</button></div><div id="chat"></div><div class="cin"><input id="ci" placeholder="Ask PanchayatAI…"><button id="ask">Send</button></div></div>';return s}
+var GEMINI_KEY="AQ.Ab8RN6LcffiEhT_NKJNXEuVwBzaawctUl-lBHTyQnw0gkY5DWA";var CH={};
+function ctx(){var d=D[cur],x=X[cur],r=d.calc(vals).map(function(z){return z[0]+": "+z[1]}).join("; ");
+return "You are PanchayatAI, a helpful assistant for students in the Seva First Innovation Challenge (West Bengal, India). Be concise, practical and honest, and say when data is missing. Current problem: "+d.tab.slice(3)+". Summary: "+d.sum+" Who is affected: "+d.who+". Root cause: "+d.root+". Proposed idea: "+d.idea+". Slider inputs: "+JSON.stringify(vals)+". Results: "+r+". Sourced facts from a 17 Oct 2026 snapshot: "+x.n.map(function(n){return n[0]}).join(" | ")+"."}
+function addMsg(r,t){var l=document.getElementById("chat"),m=document.createElement("div");m.className="msg "+r;m.textContent=t;l.appendChild(m);l.scrollTop=l.scrollHeight;return m}
+function askInit(){var l=document.getElementById("chat");if(!l)return;var h=CH[cur]=CH[cur]||[];
+h.forEach(function(m){addMsg(m.r,m.t)});if(!h.length)addMsg("bot","Hi, I am PanchayatAI. Ask me about this problem, your numbers, or how to pitch it.");
+var inp=document.getElementById("ci"),btn=document.getElementById("ask");
+async function send(text){text=(text||inp.value).trim();if(!text||btn.disabled)return;inp.value="";h.push({r:"user",t:text});addMsg("user",text);var w=addMsg("bot","Thinking…");btn.disabled=true;
+var sys=ctx(),ans="",err="";
+if(GEMINI_KEY){try{var res=await fetch("https://generativelanguage.googleapis.com/v1beta/models/gemini-3.8-flash:generateContent",{method:"POST",headers:{"Content-Type":"application/json","x-goog-api-key":GEMINI_KEY},body:JSON.stringify({systemInstruction:{parts:[{text:sys}]},contents:h.map(function(m){return{role:m.r=="user"?"user":"model",parts:[{text:m.t}]}})})});
+var j=await res.json();if(!res.ok)throw new Error((j.error&&j.error.message)||res.status);ans=j.candidates[0].content.parts.map(function(p){return p.text||""}).join("")}catch(e){err=e.message||String(e)}}
+if(!ans){try{if(!(window.claude&&window.claude.use))throw new Error(err||"no AI is available in this view");var sm=await window.claude.use("sample");if(!sm)throw new Error(err||"no AI is available in this view");
+var ms=h.map(function(m,i){return{role:m.r=="user"?"user":"assistant",content:i==0?sys+"\n\nStudent question: "+m.t:m.t}});var a=await sm(ms);ans=a.text}catch(e2){err=e2.message||String(e2)}}
+if(ans){h.push({r:"bot",t:ans});w.textContent=ans}else{h.pop();w.textContent="Sorry, I could not answer ("+err+")."}
+btn.disabled=false;l.scrollTop=l.scrollHeight}
+btn.onclick=function(){send()};inp.onkeydown=function(e){if(e.key=="Enter")send()};
+document.querySelectorAll(".chip").forEach(function(c){c.onclick=function(){send(c.textContent)}})}
+var cur=0,vals={};
+function box(t,x){return '<div class="box"><b>'+t+'</b>'+x+'</div>'}
+function show(i){cur=i;var d=D[i];vals={};
+document.querySelectorAll(".tabs button").forEach(function(b,j){b.className=j==i?"on":""});
+var s='<div class="card"><span class="tag">'+d.verdict+'</span><h2>'+d.tab.slice(3)+'</h2><p>'+d.sum+'</p>';
+s+='<div class="grid">'+box("Who is bleeding",d.who)+box("Surface issue",d.surf)+box("Real pain underneath",d.root)+box("Why now",d.why)+'</div></div>';
+s+='<div class="card"><h3>Proposed solution</h3><p>'+d.idea+'</p><p><b>Success metrics:</b> '+d.met+'</p></div>';
+s+='<div class="card"><h3>Try the numbers</h3>';
+d.inp.forEach(function(p){vals[p[0]]=p[5];s+='<label>'+p[1]+': <b id="v_'+p[0]+'">'+p[5]+'</b></label><input type="range" id="i_'+p[0]+'" min="'+p[2]+'" max="'+p[3]+'" step="'+p[4]+'" value="'+p[5]+'">'});
+s+='<div class="out" id="out"></div></div>'+extra(i);
+document.getElementById("panel").innerHTML=s;
+d.inp.forEach(function(p){document.getElementById("i_"+p[0]).oninput=function(e){vals[p[0]]=+e.target.value;document.getElementById("v_"+p[0]).textContent=e.target.value;upd()}});
+upd();askInit()}
+function upd(){document.getElementById("out").innerHTML=D[cur].calc(vals).map(function(r){return '<div><b>'+r[1]+'</b>'+r[0]+'</div>'}).join("")}
+var tb=document.getElementById("tabs");
+D.forEach(function(d,i){var b=document.createElement("button");b.textContent=d.tab;b.onclick=function(){show(i)};tb.appendChild(b)});
+show(0);
+</script>
+</body>
+</html>
